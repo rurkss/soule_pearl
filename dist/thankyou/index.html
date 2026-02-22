@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Thank You | Soule Pearl</title>
+  <meta name="description" content="Thank you for choosing Soule Pearl." />
+  <link rel="stylesheet" href="/assets/styles.css" />
+  <style>
+    .thank-hero {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background:
+        radial-gradient(800px 300px at 50% 0%, rgba(11,58,112,.15), transparent 70%),
+        linear-gradient(180deg,#ffffff,#f8fafc);
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .thank-card {
+      max-width: 640px;
+      margin: 40px auto;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 24px;
+      padding: 36px 30px;
+      box-shadow: 0 10px 30px rgba(2,6,23,.08);
+      text-align: center;
+    }
+
+    .thank-title {
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .thank-sub {
+      color: #64748b;
+      font-size: 16px;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: #0b3a70;
+      margin: 20px auto;
+      border-radius: 2px;
+    }
+
+    .highlight {
+      font-weight: 700;
+      margin-top: 12px;
+    }
+
+    .cta-row {
+      margin-top: 28px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .note-small {
+      font-size: 13px;
+      color: #64748b;
+      margin-top: 22px;
+      line-height: 1.5;
+    }
+
+    .heart {
+      font-size: 22px;
+      margin-top: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <div class="brand">
+      <div class="brand-mark">SP</div>
+      <div>
+        <div class="brand-name">Soule Pearl</div>
+        <div class="brand-sub">Official Storefront</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="thank-hero">
+  <div class="container">
+    <h1 class="thank-title">Thank You for Choosing Soule Pearl</h1>
+    <p class="thank-sub">
+      Your purchase means the world to us.
+    </p>
+  </div>
+</section>
+
+<div class="thank-card">
+
+  <div class="divider"></div>
+
+  <p class="thank-sub">
+    We hope your pearl jewelry brings elegance and joy to every moment.
+  </p>
+
+  <p class="highlight">
+    If you love your piece, we would truly appreciate your review on Amazon.
+  </p>
+
+  <div class="cta-row">
+    <a class="btn primary" href="https://www.amazon.com/your-product-link" target="_blank" rel="noopener">
+      Leave a Review
+    </a>
+
+    <a class="btn" href="https://www.amazon.com/stores/SoulePearl/page/C401D07A-2781-4EC4-9981-CBC24526275F" target="_blank" rel="noopener">
+      Visit Our Store
+    </a>
+  </div>
+
+  <div class="note-small">
+    Your feedback helps small businesses grow and continue creating beautiful pieces.
+  </div>
+
+  <div class="heart">
+    ♡
+  </div>
+
+</div>
+
+<footer class="footer container">
+  <div>© <span id="year"></span> Soule Pearl</div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

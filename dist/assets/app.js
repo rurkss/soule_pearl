@@ -8,8 +8,8 @@ const PRODUCTS = [
     id: "studs-silver",
     name: "Pearl Stud Earrings (Sterling Silver)",
     subtitle: "Classic white pearls • Minimal studs",
-    url: "https://www.amazon.com/", // TODO
-    image: "https://via.placeholder.com/900x900.png?text=Soule+Pearl+Product",
+    url: "https://a.co/d/07IgcTdu", // TODO
+    image: "https://m.media-amazon.com/images/I/41CsNhouXyL._AC_SY695_.jpg",
     tags: ["studs", "silver", "gift"],
     best: true,
   },
@@ -17,8 +17,8 @@ const PRODUCTS = [
     id: "studs-gold",
     name: "Pearl Stud Earrings (Gold Tone)",
     subtitle: "Warm finish • Everyday elegance",
-    url: "https://www.amazon.com/", // TODO
-    image: "https://via.placeholder.com/900x900.png?text=Soule+Pearl+Product",
+    url: "https://a.co/d/080aHk6F", // TODO
+    image: "https://m.media-amazon.com/images/I/41YafBGngRL._AC_SY695_.jpg",
     tags: ["studs", "gold", "gift"],
     best: true,
   },
@@ -26,8 +26,8 @@ const PRODUCTS = [
     id: "backs",
     name: "Butterfly Back Clutches",
     subtitle: "Secure fit • Comfort wear",
-    url: "https://www.amazon.com/", // TODO
-    image: "https://via.placeholder.com/900x900.png?text=Soule+Pearl+Product",
+    url: "https://a.co/d/04PgxqGT", // TODO
+    image: "https://m.media-amazon.com/images/I/4103S3p293L._AC_SY695_.jpg",
     tags: ["accessory", "gift"],
     best: false,
   },

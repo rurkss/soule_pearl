@@ -3,96 +3,116 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Soule Pearl | Shop on Amazon</title>
+  <title>Soule Pearl | Official Storefront</title>
   <meta name="description" content="Shop Soule Pearl favorites on Amazon." />
   <link rel="stylesheet" href="/assets/styles.css" />
 </head>
 <body>
-  <header class="container header">
-    <div class="brand">
-      <div class="logo">SP</div>
-      <div>
-        <div class="brand-name">Soule Pearl</div>
-        <div class="brand-sub">Shop our favorites on Amazon</div>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="brand-mark">SP</div>
+        <div class="brand-text">
+          <div class="brand-name">Soule Pearl</div>
+          <div class="brand-sub">Official Storefront</div>
+        </div>
       </div>
-    </div>
 
-    <nav class="nav">
-      <a href="#products">Products</a>
-      <a href="#about">About</a>
-      <a class="btn" id="amazonStoreBtn" href="#" target="_blank" rel="noopener">Visit Amazon Store</a>
-    </nav>
+      <nav class="nav">
+        <a href="#best-sellers">Best Sellers</a>
+        <a href="#collections">Collections</a>
+        <a href="#all-products">All Products</a>
+        <a class="btn" id="storeLink" href="#" target="_blank" rel="noopener">Visit on Amazon</a>
+      </nav>
+    </div>
   </header>
 
-  <main class="container">
-    <section class="hero">
-      <div class="hero-copy">
-        <h1>Luxury pearls, made effortless.</h1>
+  <!-- HERO (Amazon storefront-like full width banner + CTA) -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="container hero-inner">
+      <div class="hero-card">
+        <div class="eyebrow">Timeless • Gift-ready • Premium</div>
+        <h1>Everyday elegance, curated in pearls.</h1>
         <p>
-          Explore our best sellers and gift-ready pieces. Each item links directly to Amazon for fast checkout.
+          Explore Soule Pearl best sellers and signature collections. Checkout happens on Amazon.
         </p>
         <div class="hero-actions">
-          <a class="btn primary" href="#products">Shop products</a>
-          <a class="btn ghost" id="bestSellerBtn" href="#products">See best seller</a>
+          <a class="btn primary" href="#best-sellers">Shop Best Sellers</a>
+          <a class="btn ghost" id="shopAll" href="#all-products">Shop All</a>
         </div>
-        <div class="note">
-          Tip: Keep pricing off the page (Amazon prices change). Link out to Amazon for the current price.
+        <div class="fineprint">
+          Affiliate disclosure: As an Amazon Associate, we may earn from qualifying purchases.
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="hero-card">
-        <div class="badge">Gift-ready</div>
-        <div class="hero-card-title">Pearl Stud Earrings</div>
-        <div class="hero-card-sub">Sterling silver settings • Classic white pearls</div>
-        <div class="hero-metrics">
-          <div>
-            <div class="metric-val">Fast</div>
-            <div class="metric-label">Amazon checkout</div>
-          </div>
-          <div>
-            <div class="metric-val">Simple</div>
-            <div class="metric-label">Direct product links</div>
-          </div>
-          <div>
-            <div class="metric-val">Clean</div>
-            <div class="metric-label">No scraping</div>
-          </div>
-        </div>
+  <!-- BEST SELLERS -->
+  <main class="container">
+    <section id="best-sellers" class="section">
+      <div class="section-head">
+        <h2>Best Sellers</h2>
+        <div class="muted">Customer favorites</div>
+      </div>
+      <div id="bestGrid" class="grid"></div>
+    </section>
+
+    <!-- COLLECTIONS (Amazon-style category tiles) -->
+    <section id="collections" class="section">
+      <div class="section-head">
+        <h2>Collections</h2>
+        <div class="muted">Shop by style</div>
+      </div>
+
+      <div class="tiles">
+        <a class="tile" href="#all-products" data-filter="studs">
+          <div class="tile-title">Pearl Studs</div>
+          <div class="tile-sub">Classic, minimal, elegant</div>
+        </a>
+        <a class="tile" href="#all-products" data-filter="silver">
+          <div class="tile-title">Sterling Silver</div>
+          <div class="tile-sub">Cool tone essentials</div>
+        </a>
+        <a class="tile" href="#all-products" data-filter="gold">
+          <div class="tile-title">Gold Tone</div>
+          <div class="tile-sub">Warm glow finish</div>
+        </a>
+        <a class="tile" href="#all-products" data-filter="gift">
+          <div class="tile-title">Gifts</div>
+          <div class="tile-sub">Ready for gifting</div>
+        </a>
       </div>
     </section>
 
-    <section id="products" class="section">
-      <div class="section-head">
-        <h2>Products</h2>
+    <!-- ALL PRODUCTS -->
+    <section id="all-products" class="section">
+      <div class="section-head section-head-row">
+        <div>
+          <h2>All Products</h2>
+          <div class="muted">Direct links to Amazon product pages</div>
+        </div>
         <div class="controls">
-          <input id="search" class="input" type="search" placeholder="Search products..." />
-          <select id="sort" class="select">
-            <option value="featured">Sort: Featured</option>
-            <option value="newest">Sort: Newest</option>
-            <option value="name">Sort: Name</option>
+          <input id="search" class="input" type="search" placeholder="Search…" />
+          <select id="filter" class="select">
+            <option value="all">All</option>
+            <option value="studs">Pearl Studs</option>
+            <option value="silver">Sterling Silver</option>
+            <option value="gold">Gold Tone</option>
+            <option value="gift">Gifts</option>
           </select>
         </div>
       </div>
 
-      <div id="grid" class="grid" aria-live="polite"></div>
-    </section>
-
-    <section id="about" class="section">
-      <h2>About</h2>
-      <p class="about">
-        Soule Pearl curates timeless pearl jewelry designed for everyday elegance and gifting.
-        This page contains outbound links to Amazon for purchasing.
-      </p>
-      <p class="disclaimer">
-        <strong>Affiliate disclosure:</strong> As an Amazon Associate, we may earn from qualifying purchases.
-      </p>
+      <div id="allGrid" class="grid"></div>
     </section>
 
     <footer class="footer">
       <div>© <span id="year"></span> Soule Pearl</div>
       <div class="footer-links">
-        <a href="#products">Products</a>
-        <a href="#about">About</a>
+        <a href="#best-sellers">Best Sellers</a>
+        <a href="#collections">Collections</a>
+        <a href="#all-products">All Products</a>
       </div>
     </footer>
   </main>

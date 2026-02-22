@@ -1,80 +1,39 @@
-// 1) Fill this in with YOUR Amazon URLs (affiliate links, your storefront, or direct product links).
-// 2) Use YOUR images (recommended) or compliant image URLs you are allowed to use.
-// 3) Avoid showing price on the page (Amazon prices change frequently).
+// Put your Amazon Storefront link here:
+const AMAZON_STOREFRONT = "https://www.amazon.com/stores/SoulePearl/page/C401D07A-2781-4EC4-9981-CBC24526275F";
 
-const AMAZON_STORE_URL = "https://www.amazon.com/"; // TODO: put your storefront link here
-
-const products = [
+// Replace these with your real Amazon product links + your own hosted images (recommended).
+// Keep prices OFF the page (Amazon prices change).
+const PRODUCTS = [
   {
-    id: "studs-silver-7mm",
+    id: "studs-silver",
     name: "Pearl Stud Earrings (Sterling Silver)",
-    subtitle: "Classic white pearls • Gift-ready",
-    amazonUrl: "https://www.amazon.com/", // TODO: paste your product link
-    imageUrl: "https://via.placeholder.com/900x900.png?text=Your+Product+Image", // TODO: replace
-    tags: ["Best seller", "Sterling silver"],
-    featured: true,
-    createdAt: "2026-02-01",
+    subtitle: "Classic white pearls • Minimal studs",
+    url: "https://www.amazon.com/", // TODO
+    image: "https://via.placeholder.com/900x900.png?text=Soule+Pearl+Product",
+    tags: ["studs", "silver", "gift"],
+    best: true,
   },
   {
-    id: "studs-gold-7mm",
+    id: "studs-gold",
     name: "Pearl Stud Earrings (Gold Tone)",
-    subtitle: "Elegant everyday studs",
-    amazonUrl: "https://www.amazon.com/",
-    imageUrl: "https://via.placeholder.com/900x900.png?text=Your+Product+Image",
-    tags: ["Gift", "Everyday"],
-    featured: false,
-    createdAt: "2026-01-20",
+    subtitle: "Warm finish • Everyday elegance",
+    url: "https://www.amazon.com/", // TODO
+    image: "https://via.placeholder.com/900x900.png?text=Soule+Pearl+Product",
+    tags: ["studs", "gold", "gift"],
+    best: true,
   },
   {
-    id: "backs-spares",
-    name: "Spare Butterfly Backs",
-    subtitle: "Comfortable secure fit",
-    amazonUrl: "https://www.amazon.com/",
-    imageUrl: "https://via.placeholder.com/900x900.png?text=Your+Product+Image",
-    tags: ["Accessories"],
-    featured: false,
-    createdAt: "2025-12-10",
+    id: "backs",
+    name: "Butterfly Back Clutches",
+    subtitle: "Secure fit • Comfort wear",
+    url: "https://www.amazon.com/", // TODO
+    image: "https://via.placeholder.com/900x900.png?text=Soule+Pearl+Product",
+    tags: ["accessory", "gift"],
+    best: false,
   },
 ];
 
 const $ = (sel) => document.querySelector(sel);
-
-function normalize(s) {
-  return (s || "").toLowerCase().trim();
-}
-
-function render(list) {
-  const grid = $("#grid");
-  grid.innerHTML = "";
-
-  if (!list.length) {
-    grid.innerHTML = `<div class="small">No products match your search.</div>`;
-    return;
-  }
-
-  for (const p of list) {
-    const el = document.createElement("article");
-    el.className = "card";
-    el.innerHTML = `
-      <div class="thumb">
-        <img src="${p.imageUrl}" alt="${escapeHtml(p.name)}" loading="lazy" />
-      </div>
-      <div class="card-body">
-        <div class="kicker">${escapeHtml(p.subtitle || "")}</div>
-        <div class="title">${escapeHtml(p.name)}</div>
-        <div class="tags">
-          ${(p.tags || []).map(t => `<span class="tag">${escapeHtml(t)}</span>`).join("")}
-        </div>
-        <div class="card-actions">
-          <a class="btn primary" href="${p.amazonUrl}" target="_blank" rel="noopener">Shop on Amazon</a>
-          <a class="btn" href="${p.amazonUrl}" target="_blank" rel="noopener">View details</a>
-        </div>
-        <div class="small">Purchases are completed on Amazon.</div>
-      </div>
-    `;
-    grid.appendChild(el);
-  }
-}
 
 function escapeHtml(str) {
   return String(str)
@@ -85,40 +44,68 @@ function escapeHtml(str) {
     .replaceAll("'", "&#039;");
 }
 
-function applyFilters() {
-  const q = normalize($("#search").value);
-  const sort = $("#sort").value;
+function card(p) {
+  return `
+    <article class="card">
+      <a href="${p.url}" target="_blank" rel="noopener">
+        <div class="thumb">
+          <img src="${p.image}" alt="${escapeHtml(p.name)}" loading="lazy" />
+        </div>
+      </a>
+      <div class="body">
+        <div class="title">${escapeHtml(p.name)}</div>
+        <div class="sub">${escapeHtml(p.subtitle || "")}</div>
+        <div class="tags">
+          ${(p.tags || []).slice(0, 3).map(t => `<span class="tag">${escapeHtml(t)}</span>`).join("")}
+        </div>
+        <div class="cta">
+          <a class="btn primary" href="${p.url}" target="_blank" rel="noopener">Shop on Amazon</a>
+        </div>
+        <div class="small">Checkout on Amazon</div>
+      </div>
+    </article>
+  `;
+}
 
-  let list = products.filter(p => {
+function renderGrid(el, list) {
+  el.innerHTML = list.map(card).join("") || `<div class="small">No products found.</div>`;
+}
+
+function normalize(s){ return (s || "").toLowerCase().trim(); }
+
+function applyAll() {
+  const q = normalize($("#search").value);
+  const f = $("#filter").value;
+
+  let list = PRODUCTS.filter(p => {
     const hay = normalize([p.name, p.subtitle, ...(p.tags || [])].join(" "));
-    return hay.includes(q);
+    const matchesSearch = hay.includes(q);
+    const matchesFilter = f === "all" ? true : (p.tags || []).includes(f);
+    return matchesSearch && matchesFilter;
   });
 
-  if (sort === "featured") {
-    list = list.sort((a, b) => (b.featured === true) - (a.featured === true));
-  } else if (sort === "newest") {
-    list = list.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-  } else if (sort === "name") {
-    list = list.sort((a, b) => a.name.localeCompare(b.name));
-  }
-
-  render(list);
+  renderGrid($("#allGrid"), list);
 }
 
 function init() {
   $("#year").textContent = new Date().getFullYear();
-  $("#amazonStoreBtn").href = AMAZON_STORE_URL;
+  $("#storeLink").href = AMAZON_STOREFRONT;
 
-  // Best seller jump (first featured product)
-  const best = products.find(p => p.featured) || products[0];
-  $("#bestSellerBtn").addEventListener("click", () => {
-    // no-op: anchor already takes user to products
+  const best = PRODUCTS.filter(p => p.best);
+  renderGrid($("#bestGrid"), best.length ? best : PRODUCTS.slice(0, 4));
+
+  $("#search").addEventListener("input", applyAll);
+  $("#filter").addEventListener("change", applyAll);
+
+  // Collection tiles
+  document.querySelectorAll("[data-filter]").forEach(el => {
+    el.addEventListener("click", () => {
+      $("#filter").value = el.getAttribute("data-filter");
+      applyAll();
+    });
   });
 
-  $("#search").addEventListener("input", applyFilters);
-  $("#sort").addEventListener("change", applyFilters);
-
-  applyFilters();
+  applyAll();
 }
 
 init();
